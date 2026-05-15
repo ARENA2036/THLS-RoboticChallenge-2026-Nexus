@@ -1,0 +1,20 @@
+{
+  "gripper_type": "robotiq_2f85",
+  "grippers": [
+    {
+      "robot_name": "left",
+      "open_command_value": 0.0,
+      "close_command_value": 255.0,
+      "default_grip_force_n": 20.0,
+      "finger_max_width_m": 0.085
+    },
+    {
+      "robot_name": "right",
+      "open_command_value": 0.0,
+      "close_command_value": 255.0,
+      "default_grip_force_n": 20.0,
+      "finger_max_width_m": 0.085
+    }
+  ]
+}
+

@@ -1,0 +1,20 @@
+{
+  "name": "cdm",
+  "version": "1.0.0",
+  "description": "Canonical Data Model for Wire Harnesses",
+  "scripts": {
+    "generate:json": "python generate_cdm_definitions.py",
+    "generate:ts": "npx json-schema-to-typescript definitions/cdm.schema.json -o definitions/cdm_schema.ts --bannerComment \"/* Auto-generated from cdm_schema.py - DO NOT EDIT */\"",
+    "generate:types": "npm run generate:json && npm run generate:ts && rm definitions/cdm.schema.json",
+    "parse:ts": "npx tsc kbl_parser.ts verify_kbl_parser.ts --esModuleInterop --target es2020 --module commonjs --skipLibCheck",
+    "verify:ts": "npm run parse:ts && node verify_kbl_parser.js && rm kbl_parser.js verify_kbl_parser.js definitions/cdm_schema.js"
+  },
+  "devDependencies": {
+    "@types/jsdom": "^27.0.0",
+    "@types/node": "^25.2.0",
+    "jsdom": "^28.0.0",
+    "json-schema-to-typescript": "^15.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}

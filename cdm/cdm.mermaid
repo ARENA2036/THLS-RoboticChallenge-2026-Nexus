@@ -1,0 +1,279 @@
+classDiagram
+    class Accessory {
+        +str id
+        +str part_number
+        +str? manufacturer
+        +str? description
+        +str? accessory_type
+        +str? material
+        +float? mass_g
+    }
+    class AccessoryOccurrence {
+        +str id
+        +Accessory accessory
+        +str? label
+        +CartesianPoint? position
+        +List[Connector] referenced_connectors
+    }
+    class BezierCurve {
+        +str? id
+        +int degree
+        +List[CartesianPoint] control_points
+    }
+    class CartesianPoint {
+        +str? id
+        +float coord_x
+        +float coord_y
+        +float coord_z
+    }
+    class Cavity {
+        +str id
+        +str cavity_number
+        +bool is_available
+        +bool has_integrated_terminal
+    }
+    class Connection {
+        +str id
+        +str? signal_name
+        +WireOccurrence | CoreOccurrence wire_occurrence
+        +List[Extremity] extremities
+        +List[Segment] segments
+    }
+    class Connector {
+        +str id
+        +str part_number
+        +str? manufacturer
+        +str? description
+        +Literal[housing, module, inline, splice, terminal_block] connector_type
+        +str? housing_color
+        +str? housing_code
+        +str? material
+        +float? mass_g
+        +List[Slot] slots
+    }
+    class ConnectorOccurrence {
+        +str id
+        +Connector connector
+        +str? label
+        +str? description
+        +CartesianPoint? position
+        +List[Slot] slots
+        +List[ContactPoint] contact_points
+    }
+    class ContactPoint {
+        +str id
+        +Terminal terminal
+        +Cavity cavity
+    }
+    class Core {
+        +str id
+        +str? label
+        +str? wire_type
+        +float? cross_section_area_mm2
+        +float? outside_diameter_mm
+        +List[WireColor] colors
+        +str? cable_designator
+    }
+    class CoreOccurrence {
+        +str id
+        +Core core
+        +str? wire_number
+        +WireLength? length
+    }
+    class Extremity {
+        +str? id
+        +float position_on_wire
+        +ContactPoint contact_point
+    }
+    class Fixing {
+        +str id
+        +str part_number
+        +str? manufacturer
+        +str? description
+        +str? fixing_type
+        +str? material
+        +float? mass_g
+    }
+    class FixingOccurrence {
+        +str id
+        +Fixing fixing
+        +str? label
+        +CartesianPoint? position
+    }
+    class Node {
+        +str id
+        +str? label
+        +CartesianPoint position
+    }
+    class ProtectionArea {
+        +str? id
+        +float start_location
+        +float end_location
+        +WireProtectionOccurrence wire_protection_occurrence
+    }
+    class Routing {
+        +str? id
+        +Connection routed_connection
+        +List[Segment] segments
+    }
+    class Segment {
+        +str id
+        +str? label
+        +Node start_node
+        +Node end_node
+        +float? length
+        +float? virtual_length
+        +float? physical_length
+        +BezierCurve? center_curve
+        +List[ProtectionArea] protection_areas
+        +float? min_bend_radius_mm
+        +List[FixingOccurrence] fixings
+    }
+    class Slot {
+        +str id
+        +str slot_number
+        +int num_cavities
+        +List[Cavity] cavities
+        +Literal[male, female, na] gender
+    }
+    class SpecialWireOccurrence {
+        +str id
+        +Wire wire
+        +str? special_wire_id
+        +WireLength? length
+        +List[CoreOccurrence] core_occurrences
+    }
+    class Terminal {
+        +str id
+        +str part_number
+        +str? manufacturer
+        +str? description
+        +Literal[pin, socket, ring, spade, blade, splice] terminal_type
+        +Literal[male, female, na] gender
+        +float? min_cross_section_mm
+        +float? max_cross_section_mm
+    }
+    class Wire {
+        +str id
+        +str part_number
+        +str? manufacturer
+        +str? description
+        +Literal[wire, cable, twisted_pair, coaxial, shielded, multi_core] wire_type
+        +float? cross_section_area_mm2
+        +float? outside_diameter
+        +str? material_conductor
+        +str? material_insulation
+        +float? mass_g
+        +List[WireColor] cover_colors
+        +List[Core] cores
+    }
+    class WireColor {
+        +str color_type
+        +str color_code
+    }
+    class WireHarness {
+        +str id
+        +str part_number
+        +str? version
+        +str? company_name
+        +str? description
+        +str created_at
+        +str? modified_at
+        +List[Connector] connectors
+        +List[Terminal] terminals
+        +List[Wire] wires
+        +List[WireProtection] wire_protections
+        +List[Accessory] accessories
+        +List[Fixing] fixings
+        +List[ConnectorOccurrence] connector_occurrences
+        +List[WireOccurrence] wire_occurrences
+        +List[SpecialWireOccurrence] special_wire_occurrences
+        +List[WireProtectionOccurrence] wire_protection_occurrences
+        +List[AccessoryOccurrence] accessory_occurrences
+        +List[FixingOccurrence] fixing_occurrences
+        +List[Connection] connections
+        +List[Node] nodes
+        +List[Segment] segments
+        +List[Routing] routings
+    }
+    class WireLength {
+        +str length_type
+        +float length_mm
+    }
+    class WireOccurrence {
+        +str id
+        +Wire wire
+        +str? wire_number
+        +WireLength? length
+        +float? length_dmu
+        +float? length_production
+        +str? printed_label
+    }
+    class WireProtection {
+        +str id
+        +str part_number
+        +str? manufacturer
+        +str? description
+        +Literal[tape, tube, conduit, sleeve, grommet]? protection_type
+        +str? material
+        +float? mass_g
+    }
+    class WireProtectionOccurrence {
+        +str id
+        +WireProtection protection
+        +str? label
+    }
+    AccessoryOccurrence <-- Accessory : accessory
+    AccessoryOccurrence <-- CartesianPoint : position
+    AccessoryOccurrence *-- Connector : referenced_connectors
+    BezierCurve *-- CartesianPoint : control_points
+    Connection <-- WireOccurrence : wire_occurrence
+    Connection *-- Extremity : extremities
+    Connection *-- Segment : segments
+    Connector *-- Slot : slots
+    ConnectorOccurrence <-- Connector : connector
+    ConnectorOccurrence <-- CartesianPoint : position
+    ConnectorOccurrence *-- Slot : slots
+    ConnectorOccurrence *-- ContactPoint : contact_points
+    ContactPoint <-- Terminal : terminal
+    ContactPoint <-- Cavity : cavity
+    Core *-- WireColor : colors
+    CoreOccurrence <-- Core : core
+    CoreOccurrence <-- WireLength : length
+    Extremity <-- ContactPoint : contact_point
+    FixingOccurrence <-- Fixing : fixing
+    FixingOccurrence <-- CartesianPoint : position
+    Node <-- CartesianPoint : position
+    ProtectionArea <-- WireProtectionOccurrence : wire_protection_occurrence
+    Routing <-- Connection : routed_connection
+    Routing *-- Segment : segments
+    Segment <-- Node : start_node
+    Segment <-- Node : end_node
+    Segment <-- BezierCurve : center_curve
+    Segment *-- ProtectionArea : protection_areas
+    Segment *-- FixingOccurrence : fixings
+    Slot *-- Cavity : cavities
+    SpecialWireOccurrence <-- Wire : wire
+    SpecialWireOccurrence <-- WireLength : length
+    SpecialWireOccurrence *-- CoreOccurrence : core_occurrences
+    Wire *-- WireColor : cover_colors
+    Wire *-- Core : cores
+    WireHarness *-- Connector : connectors
+    WireHarness *-- Terminal : terminals
+    WireHarness *-- Wire : wires
+    WireHarness *-- WireProtection : wire_protections
+    WireHarness *-- Accessory : accessories
+    WireHarness *-- Fixing : fixings
+    WireHarness *-- ConnectorOccurrence : connector_occurrences
+    WireHarness *-- WireOccurrence : wire_occurrences
+    WireHarness *-- SpecialWireOccurrence : special_wire_occurrences
+    WireHarness *-- WireProtectionOccurrence : wire_protection_occurrences
+    WireHarness *-- AccessoryOccurrence : accessory_occurrences
+    WireHarness *-- FixingOccurrence : fixing_occurrences
+    WireHarness *-- Connection : connections
+    WireHarness *-- Node : nodes
+    WireHarness *-- Segment : segments
+    WireHarness *-- Routing : routings
+    WireOccurrence <-- Wire : wire
+    WireOccurrence <-- WireLength : length
+    WireProtectionOccurrence <-- WireProtection : protection

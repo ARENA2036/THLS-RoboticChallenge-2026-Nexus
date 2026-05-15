@@ -1,0 +1,19 @@
+<!-- Simple work table for cable handling -->
+<!-- This file is included by dual_ur10e_scene.xml -->
+
+<!-- Main work table -->
+<body name="table" pos="0 0 0">
+  <!-- Table top - clean surface for cable work -->
+  <geom name="table_top" type="box" size="0.8 0.5 0.02" pos="0 0 0.73" 
+        material="table_wood" mass="20"/>
+  
+  <!-- Table legs -->
+  <geom name="leg_front_left" type="cylinder" size="0.03 0.35" pos="-0.7 -0.4 0.36" 
+        material="table_metal"/>
+  <geom name="leg_front_right" type="cylinder" size="0.03 0.35" pos="0.7 -0.4 0.36" 
+        material="table_metal"/>
+  <geom name="leg_back_left" type="cylinder" size="0.03 0.35" pos="-0.7 0.4 0.36" 
+        material="table_metal"/>
+  <geom name="leg_back_right" type="cylinder" size="0.03 0.35" pos="0.7 0.4 0.36" 
+        material="table_metal"/>
+</body>

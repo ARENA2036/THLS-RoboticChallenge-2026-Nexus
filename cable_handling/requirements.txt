@@ -1,0 +1,11 @@
+# Wire Harness Assembly Simulation Dependencies
+
+# MuJoCo physics engine
+mujoco>=3.0.0
+
+# Numerical computing
+numpy>=1.20.0
+
+# Optional: For advanced visualization
+# matplotlib>=3.5.0
+# opencv-python>=4.5.0

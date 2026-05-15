@@ -1,0 +1,21 @@
+{
+  "wire_end_pickups": [],
+  "pull_test_thresholds": [
+    {"min_cross_section_mm2": 0.0, "max_cross_section_mm2": 0.5, "threshold_force_n": 30.0},
+    {"min_cross_section_mm2": 0.5, "max_cross_section_mm2": 1.5, "threshold_force_n": 50.0},
+    {"min_cross_section_mm2": 1.5, "max_cross_section_mm2": 6.0, "threshold_force_n": 80.0},
+    {"min_cross_section_mm2": 6.0, "max_cross_section_mm2": 100.0, "threshold_force_n": 120.0}
+  ],
+  "peg_pass_height_offset_m": 0.005,
+  "between_peg_height_offset_m": 0.05,
+  "insertion_pre_adjustment_m": 0.002,
+  "regrasp_retract_m": 0.03,
+  "gripper_open_value": 0.0,
+  "gripper_close_value": 255.0,
+  "gripper_settle_s": 0.3,
+  "default_wire_color": [0.95, 0.55, 0.1, 1.0],
+  "insertion_approach_distance_m": 0.08,
+  "peg_slot_offset_m": 0.015,
+  "peg_clearance_m": 0.04,
+  "cable_hang_height_m": 0.30
+}

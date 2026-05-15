@@ -1,0 +1,1717 @@
+{
+  "$defs": {
+    "Accessory": {
+      "description": "Definition of an accessory component (e.g., hybrid housing assemblies).",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "part_number": {
+          "type": "string"
+        },
+        "manufacturer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "accessory_type": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "material": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "mass_g": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "unit_price": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "currency": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "digikey_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "id",
+        "part_number"
+      ],
+      "type": "object"
+    },
+    "AccessoryOccurrence": {
+      "description": "Instance of an accessory used in the harness.",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "accessory": {
+          "$ref": "#/$defs/Accessory"
+        },
+        "label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "position": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CartesianPoint"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "referenced_connectors": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Connector"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "accessory"
+      ],
+      "type": "object"
+    },
+    "BezierCurve": {
+      "properties": {
+        "id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "degree": {
+          "type": "integer"
+        },
+        "control_points": {
+          "items": {
+            "$ref": "#/$defs/CartesianPoint"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "degree",
+        "control_points"
+      ],
+      "type": "object"
+    },
+    "CartesianPoint": {
+      "properties": {
+        "id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "coord_x": {
+          "type": "number"
+        },
+        "coord_y": {
+          "type": "number"
+        },
+        "coord_z": {
+          "default": 0.0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "coord_x",
+        "coord_y"
+      ],
+      "type": "object"
+    },
+    "Cavity": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "cavity_number": {
+          "type": "string"
+        },
+        "is_available": {
+          "default": true,
+          "type": "boolean"
+        },
+        "has_integrated_terminal": {
+          "default": false,
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "cavity_number"
+      ],
+      "type": "object"
+    },
+    "Connection": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "signal_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "wire_occurrence": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/WireOccurrence"
+            },
+            {
+              "$ref": "#/$defs/CoreOccurrence"
+            }
+          ]
+        },
+        "extremities": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Extremity"
+          },
+          "type": "array"
+        },
+        "segments": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Segment"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "wire_occurrence"
+      ],
+      "type": "object"
+    },
+    "Connector": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "part_number": {
+          "type": "string"
+        },
+        "manufacturer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "connector_type": {
+          "enum": [
+            "housing",
+            "module",
+            "inline",
+            "splice",
+            "terminal_block"
+          ],
+          "type": "string"
+        },
+        "housing_color": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "housing_code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "material": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "mass_g": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "unit_price": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "currency": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "digikey_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "slots": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Slot"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "part_number",
+        "connector_type"
+      ],
+      "type": "object"
+    },
+    "ConnectorOccurrence": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "connector": {
+          "$ref": "#/$defs/Connector"
+        },
+        "label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "position": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CartesianPoint"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "slots": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Slot"
+          },
+          "type": "array"
+        },
+        "contact_points": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/ContactPoint"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "connector"
+      ],
+      "type": "object"
+    },
+    "ContactPoint": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "terminal": {
+          "$ref": "#/$defs/Terminal"
+        },
+        "cavity": {
+          "$ref": "#/$defs/Cavity"
+        }
+      },
+      "required": [
+        "id",
+        "terminal",
+        "cavity"
+      ],
+      "type": "object"
+    },
+    "Core": {
+      "description": "Individual core within a multi-core cable definition.",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "wire_type": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "cross_section_area_mm2": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "outside_diameter_mm": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "colors": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/WireColor"
+          },
+          "type": "array"
+        },
+        "cable_designator": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "type": "object"
+    },
+    "CoreOccurrence": {
+      "description": "Instance of a core within a special wire occurrence.",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "core": {
+          "$ref": "#/$defs/Core"
+        },
+        "wire_number": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "length": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/WireLength"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "id",
+        "core"
+      ],
+      "type": "object"
+    },
+    "Extremity": {
+      "properties": {
+        "id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "position_on_wire": {
+          "type": "number"
+        },
+        "contact_point": {
+          "$ref": "#/$defs/ContactPoint"
+        }
+      },
+      "required": [
+        "position_on_wire",
+        "contact_point"
+      ],
+      "type": "object"
+    },
+    "Fixing": {
+      "description": "Definition of a fixing component (cable ties, clips, etc.).",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "part_number": {
+          "type": "string"
+        },
+        "manufacturer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "fixing_type": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "material": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "mass_g": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "unit_price": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "currency": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "digikey_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "id",
+        "part_number"
+      ],
+      "type": "object"
+    },
+    "FixingOccurrence": {
+      "description": "Instance of a fixing used in the harness.",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "fixing": {
+          "$ref": "#/$defs/Fixing"
+        },
+        "label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "position": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CartesianPoint"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "id",
+        "fixing"
+      ],
+      "type": "object"
+    },
+    "Node": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "position": {
+          "$ref": "#/$defs/CartesianPoint"
+        }
+      },
+      "required": [
+        "id",
+        "position"
+      ],
+      "type": "object"
+    },
+    "ProtectionArea": {
+      "description": "Defines where wire protection is applied on a segment.",
+      "properties": {
+        "id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "start_location": {
+          "type": "number"
+        },
+        "end_location": {
+          "type": "number"
+        },
+        "wire_protection_occurrence": {
+          "$ref": "#/$defs/WireProtectionOccurrence"
+        }
+      },
+      "required": [
+        "start_location",
+        "end_location",
+        "wire_protection_occurrence"
+      ],
+      "type": "object"
+    },
+    "Routing": {
+      "properties": {
+        "id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "routed_connection": {
+          "$ref": "#/$defs/Connection"
+        },
+        "segments": {
+          "items": {
+            "$ref": "#/$defs/Segment"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "routed_connection",
+        "segments"
+      ],
+      "type": "object"
+    },
+    "Segment": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "start_node": {
+          "$ref": "#/$defs/Node"
+        },
+        "end_node": {
+          "$ref": "#/$defs/Node"
+        },
+        "length": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "virtual_length": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "physical_length": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "center_curve": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/BezierCurve"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "protection_areas": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/ProtectionArea"
+          },
+          "type": "array"
+        },
+        "min_bend_radius_mm": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "fixings": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/FixingOccurrence"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "start_node",
+        "end_node"
+      ],
+      "type": "object"
+    },
+    "Slot": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "slot_number": {
+          "type": "string"
+        },
+        "num_cavities": {
+          "type": "integer"
+        },
+        "cavities": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Cavity"
+          },
+          "type": "array"
+        },
+        "gender": {
+          "default": "na",
+          "enum": [
+            "male",
+            "female",
+            "na"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "slot_number",
+        "num_cavities"
+      ],
+      "type": "object"
+    },
+    "SpecialWireOccurrence": {
+      "description": "Instance of a multi-core/coaxial/shielded cable with nested core occurrences.",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "wire": {
+          "$ref": "#/$defs/Wire"
+        },
+        "special_wire_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "length": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/WireLength"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "core_occurrences": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/CoreOccurrence"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "wire"
+      ],
+      "type": "object"
+    },
+    "Terminal": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "part_number": {
+          "type": "string"
+        },
+        "manufacturer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "terminal_type": {
+          "enum": [
+            "pin",
+            "socket",
+            "ring",
+            "spade",
+            "blade",
+            "splice"
+          ],
+          "type": "string"
+        },
+        "gender": {
+          "default": "na",
+          "enum": [
+            "male",
+            "female",
+            "na"
+          ],
+          "type": "string"
+        },
+        "min_cross_section_mm": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "max_cross_section_mm": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "unit_price": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "currency": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "digikey_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "id",
+        "part_number",
+        "terminal_type"
+      ],
+      "type": "object"
+    },
+    "Wire": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "part_number": {
+          "type": "string"
+        },
+        "manufacturer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "wire_type": {
+          "enum": [
+            "wire",
+            "cable",
+            "twisted_pair",
+            "coaxial",
+            "shielded",
+            "multi_core"
+          ],
+          "type": "string"
+        },
+        "cross_section_area_mm2": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "outside_diameter": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "material_conductor": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "material_insulation": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "mass_g": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "unit_price": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "currency": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "digikey_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "cover_colors": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/WireColor"
+          },
+          "type": "array"
+        },
+        "cores": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Core"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "part_number",
+        "wire_type"
+      ],
+      "type": "object"
+    },
+    "WireColor": {
+      "properties": {
+        "color_type": {
+          "type": "string"
+        },
+        "color_code": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "color_type",
+        "color_code"
+      ],
+      "type": "object"
+    },
+    "WireLength": {
+      "description": "Length specification with type descriptor.",
+      "properties": {
+        "length_type": {
+          "type": "string"
+        },
+        "length_mm": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "length_type",
+        "length_mm"
+      ],
+      "type": "object"
+    },
+    "WireOccurrence": {
+      "description": "Instance of a simple wire.",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "wire": {
+          "$ref": "#/$defs/Wire"
+        },
+        "wire_number": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "length": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/WireLength"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "length_dmu": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "length_production": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "printed_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "id",
+        "wire"
+      ],
+      "type": "object"
+    },
+    "WireProtection": {
+      "description": "Definition of wire protection material (tape, tube, conduit, etc.).",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "part_number": {
+          "type": "string"
+        },
+        "manufacturer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "protection_type": {
+          "anyOf": [
+            {
+              "enum": [
+                "tape",
+                "tube",
+                "conduit",
+                "sleeve",
+                "grommet"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "material": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "mass_g": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "unit_price": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "currency": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "digikey_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "id",
+        "part_number"
+      ],
+      "type": "object"
+    },
+    "WireProtectionOccurrence": {
+      "description": "Instance of wire protection used in the harness.",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "protection": {
+          "$ref": "#/$defs/WireProtection"
+        },
+        "label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "id",
+        "protection"
+      ],
+      "type": "object"
+    }
+  },
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "part_number": {
+      "type": "string"
+    },
+    "version": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "company_name": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "description": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "modified_at": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "connectors": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/Connector"
+      },
+      "type": "array"
+    },
+    "terminals": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/Terminal"
+      },
+      "type": "array"
+    },
+    "wires": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/Wire"
+      },
+      "type": "array"
+    },
+    "wire_protections": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/WireProtection"
+      },
+      "type": "array"
+    },
+    "accessories": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/Accessory"
+      },
+      "type": "array"
+    },
+    "fixings": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/Fixing"
+      },
+      "type": "array"
+    },
+    "connector_occurrences": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/ConnectorOccurrence"
+      },
+      "type": "array"
+    },
+    "wire_occurrences": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/WireOccurrence"
+      },
+      "type": "array"
+    },
+    "special_wire_occurrences": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/SpecialWireOccurrence"
+      },
+      "type": "array"
+    },
+    "wire_protection_occurrences": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/WireProtectionOccurrence"
+      },
+      "type": "array"
+    },
+    "accessory_occurrences": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/AccessoryOccurrence"
+      },
+      "type": "array"
+    },
+    "fixing_occurrences": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/FixingOccurrence"
+      },
+      "type": "array"
+    },
+    "connections": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/Connection"
+      },
+      "type": "array"
+    },
+    "nodes": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/Node"
+      },
+      "type": "array"
+    },
+    "segments": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/Segment"
+      },
+      "type": "array"
+    },
+    "routings": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/Routing"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "id",
+    "part_number",
+    "created_at"
+  ],
+  "type": "object"
+}

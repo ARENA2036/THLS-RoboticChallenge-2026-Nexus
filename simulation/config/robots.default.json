@@ -1,0 +1,54 @@
+{
+  "robots": [
+    {
+      "robot_name": "left",
+      "base_position_m": [-0.6, -0.65, 0.75],
+      "base_quat_wxyz": [0.7071, 0.0, 0.0, 0.7071],
+      "joint_names": [
+        "shoulder_pan_joint",
+        "shoulder_lift_joint",
+        "elbow_joint",
+        "wrist_1_joint",
+        "wrist_2_joint",
+        "wrist_3_joint"
+      ],
+      "joint_limits_rad": [
+        [-6.283, 6.283],
+        [-6.283, 6.283],
+        [-3.1415, 3.1415],
+        [-6.283, 6.283],
+        [-6.283, 6.283],
+        [-6.283, 6.283]
+      ],
+      "home_joint_angles_rad": [0.0, -1.57, 1.57, -1.57, -1.57, 0.0]
+    },
+    {
+      "robot_name": "right",
+      "base_position_m": [0.6, -0.65, 0.75],
+      "base_quat_wxyz": [0.7071, 0.0, 0.0, 0.7071],
+      "joint_names": [
+        "shoulder_pan_joint",
+        "shoulder_lift_joint",
+        "elbow_joint",
+        "wrist_1_joint",
+        "wrist_2_joint",
+        "wrist_3_joint"
+      ],
+      "joint_limits_rad": [
+        [-6.283, 6.283],
+        [-6.283, 6.283],
+        [-3.1415, 3.1415],
+        [-6.283, 6.283],
+        [-6.283, 6.283],
+        [-6.283, 6.283]
+      ],
+      "home_joint_angles_rad": [0.0, -1.57, 1.57, -1.57, -1.57, 0.0]
+    }
+  ],
+  "asset_sources": {
+    "ur10e_model_source": "official_ur_description",
+    "ur10e_mjcf_path": "",
+    "use_simplified_kinematic_visual": true
+  }
+}
+

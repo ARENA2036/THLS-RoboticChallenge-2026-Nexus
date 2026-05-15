@@ -1,0 +1,86 @@
+{
+  "peg_catalog": {
+    "fork_standard": {
+      "peg_shape_type": "fork_standard",
+      "post_radius_m": 0.006,
+      "post_height_m": 0.03,
+      "prong_length_m": 0.018,
+      "prong_width_m": 0.004,
+      "prong_gap_m": 0.009
+    },
+    "round_pin": {
+      "peg_shape_type": "round_pin",
+      "post_radius_m": 0.005,
+      "post_height_m": 0.025
+    },
+    "t_peg": {
+      "peg_shape_type": "t_peg",
+      "post_radius_m": 0.005,
+      "post_height_m": 0.028,
+      "crossbar_length_m": 0.022,
+      "crossbar_width_m": 0.004
+    }
+  },
+  "peg_instances": [
+    {
+      "object_id": "peg_0001",
+      "peg_type": "fork_standard",
+      "position_m": [-0.25, 0.05, 0.765],
+      "orientation_quat_wxyz": [1.0, 0.0, 0.0, 0.0]
+    },
+    {
+      "object_id": "peg_0002",
+      "peg_type": "fork_standard",
+      "position_m": [0.15, 0.12, 0.765],
+      "orientation_quat_wxyz": [1.0, 0.0, 0.0, 0.0]
+    },
+    {
+      "object_id": "peg_0003",
+      "peg_type": "round_pin",
+      "position_m": [-0.10, 0.15, 0.765],
+      "orientation_quat_wxyz": [1.0, 0.0, 0.0, 0.0],
+      "color_rgba": [0.55, 0.55, 0.58, 1.0]
+    },
+    {
+      "object_id": "peg_0004",
+      "peg_type": "t_peg",
+      "position_m": [0.05, -0.05, 0.765],
+      "orientation_quat_wxyz": [1.0, 0.0, 0.0, 0.0],
+      "color_rgba": [0.60, 0.60, 0.65, 1.0]
+    }
+  ],
+  "connector_holder_instances": [
+    {
+      "object_id": "holder_A",
+      "position_m": [-0.45, -0.1, 0.765],
+      "orientation_quat_wxyz": [1.0, 0.0, 0.0, 0.0],
+      "size_m": [0.03, 0.02, 0.012],
+      "color_rgba": [0.2, 0.42, 0.86, 1.0]
+    },
+    {
+      "object_id": "holder_B",
+      "position_m": [0.45, -0.1, 0.765],
+      "orientation_quat_wxyz": [1.0, 0.0, 0.0, 0.0],
+      "size_m": [0.03, 0.02, 0.012],
+      "color_rgba": [0.2, 0.42, 0.86, 1.0]
+    }
+  ],
+  "connector_plug_instances": [
+    {
+      "object_id": "plug_A",
+      "position_m": [-0.45, -0.1, 0.785],
+      "orientation_quat_wxyz": [1.0, 0.0, 0.0, 0.0],
+      "plug_radius_m": 0.008,
+      "plug_length_m": 0.025,
+      "color_rgba": [0.85, 0.35, 0.1, 1.0]
+    },
+    {
+      "object_id": "plug_B",
+      "position_m": [0.45, -0.1, 0.785],
+      "orientation_quat_wxyz": [1.0, 0.0, 0.0, 0.0],
+      "plug_radius_m": 0.008,
+      "plug_length_m": 0.025,
+      "color_rgba": [0.85, 0.35, 0.1, 1.0]
+    }
+  ]
+}

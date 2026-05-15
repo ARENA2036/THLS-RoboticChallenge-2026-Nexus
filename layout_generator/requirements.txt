@@ -1,0 +1,12 @@
+# Layout Generator - Production Dependencies
+# Python 3.11+
+
+# Data validation
+pydantic>=2.5.0
+
+# Visualization
+matplotlib>=3.8.0
+numpy>=1.26.0
+
+# Utilities
+typing-extensions>=4.9.0

@@ -1,0 +1,16 @@
+fastapi
+uvicorn
+pydantic
+lxml
+networkx
+pymupdf
+numpy
+google-generativeai
+easyocr
+docling[vlm]
+transformers
+accelerate
+requests
+beautifulsoup4
+python-dotenv
+reportlab

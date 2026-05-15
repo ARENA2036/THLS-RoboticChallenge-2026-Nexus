@@ -1,0 +1,87 @@
+<body name="cable_assembly">
+  <!-- 
+    Optimized flexible cable using MuJoCo's elasticity.cable plugin
+    
+    Stability improvements:
+    - Higher damping to prevent oscillations
+    - Increased connector friction for reliable grasping
+    - condim="6" enables full torsional friction
+    - Higher mass for connectors to prevent flying away
+  -->
+  
+  <!-- Composite cable - 26 segments, high damping -->
+  <composite prefix="wire:" type="cable" initial="free" vertex="
+    0.00 -0.25 0.77
+    0.00 -0.23 0.77
+    0.00 -0.21 0.77
+    0.00 -0.19 0.77
+    0.00 -0.17 0.77
+    0.00 -0.15 0.77
+    0.00 -0.13 0.77
+    0.00 -0.11 0.77
+    0.00 -0.09 0.77
+    0.00 -0.07 0.77
+    0.00 -0.05 0.77
+    0.00 -0.03 0.77
+    0.00 -0.01 0.77
+    0.00  0.01 0.77
+    0.00  0.03 0.77
+    0.00  0.05 0.77
+    0.00  0.07 0.77
+    0.00  0.09 0.77
+    0.00  0.11 0.77
+    0.00  0.13 0.77
+    0.00  0.15 0.77
+    0.00  0.17 0.77
+    0.00  0.19 0.77
+    0.00  0.21 0.77
+    0.00  0.23 0.77
+    0.00  0.25 0.77
+  ">
+    <!-- Cable elasticity plugin - moderate stiffness -->
+    <plugin plugin="mujoco.elasticity.cable">
+      <config key="twist" value="1e5"/>
+      <config key="bend" value="1e4"/>
+      <config key="vmax" value="0.005"/>
+    </plugin>
+    <!-- HIGH damping to suppress oscillations and jerky motion -->
+    <joint kind="main" damping="5.0" armature="0.02"/>
+    <!-- Cable geometry with friction -->
+    <geom type="capsule" size="0.004" rgba="0.1 0.1 0.1 1" 
+          condim="4" friction="1.5 0.5 0.5" mass="0.005"
+          solref="0.004 1" solimp="0.95 0.99 0.001"/>
+  </composite>
+  
+  <!-- Left connector - OPTIMIZED for stable grasping -->
+  <body name="cable_end_left" pos="0 -0.25 0.77">
+    <freejoint name="connector_left_joint"/>
+    <!-- Higher mass prevents flying away -->
+    <inertial mass="0.05" pos="0 0 0" diaginertia="0.00005 0.00005 0.00005"/>
+    <!-- Main connector body with HIGH friction and condim="6" for torsional friction -->
+    <geom name="connector_left_body" type="cylinder" size="0.012 0.02" 
+          rgba="0.2 0.5 0.9 1" mass="0.04" 
+          friction="2.5 0.1 0.01" condim="6"
+          solref="0.002 1" solimp="0.99 0.999 0.001" priority="1"/>
+    <!-- Grip ring - even higher friction surface -->
+    <geom name="connector_left_ring" type="cylinder" size="0.014 0.005" pos="0 0 0.012"
+          rgba="0.3 0.3 0.3 1" mass="0.01" 
+          friction="3.0 0.1 0.01" condim="6"
+          solref="0.002 1" solimp="0.99 0.999 0.001" priority="1"/>
+    <site name="cable_grasp_left" pos="0 0 0" size="0.008" rgba="1 0 0 0.5"/>
+  </body>
+  
+  <!-- Right connector - same optimization -->
+  <body name="cable_end_right" pos="0 0.25 0.77">
+    <freejoint name="connector_right_joint"/>
+    <inertial mass="0.05" pos="0 0 0" diaginertia="0.00005 0.00005 0.00005"/>
+    <geom name="connector_right_body" type="cylinder" size="0.012 0.02" 
+          rgba="0.9 0.5 0.2 1" mass="0.04" 
+          friction="2.5 0.1 0.01" condim="6"
+          solref="0.002 1" solimp="0.99 0.999 0.001" priority="1"/>
+    <geom name="connector_right_ring" type="cylinder" size="0.014 0.005" pos="0 0 0.012"
+          rgba="0.3 0.3 0.3 1" mass="0.01" 
+          friction="3.0 0.1 0.01" condim="6"
+          solref="0.002 1" solimp="0.99 0.999 0.001" priority="1"/>
+    <site name="cable_grasp_right" pos="0 0 0" size="0.008" rgba="0 0 1 0.5"/>
+  </body>
+</body>
